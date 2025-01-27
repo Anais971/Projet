@@ -1,0 +1,58 @@
+"Créez un planning de projet dans cette feuille de calcul.
+Entrez le titre de ce projet dans la cellule B1. 
+Des informations sur l’utilisation de cette feuille de calcul, notamment des instructions pour les lecteurs d’écran et l’auteur de ce classeur, figurent dans la feuille de calcul À propos.
+Continuez à parcourir la colonne A pour entendre des instructions supplémentaires.";Luminaire connecté;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+Entrez le nom de la société dans la cellule B2.;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+Entrez le nom du chef de projet dans la cellule B3. Entrez la date de début du projet dans la cellule E3. Début du projet : l’étiquette figure dans la cellule C3.;Chef de projet;Moi;;90H;;;;;;;;;;;;;;;;;;;;;;;;;;
+"La semaine d’affichage dans la cellule E4 représente la semaine de début à afficher dans le planning de projet dans la cellule I4. La date de début du projet est considérée comme étant la semaine 1. Pour modifier la semaine d’affichage, entrez simplement un nouveau numéro de semaine dans la cellule E4.
+La date de début pour chaque semaine, à commencer par la semaine d’affichage dans la cellule E4, figure dans la cellule I4 et est calculée automatiquement. Cet affichage représente 8 semaines, de cellule I4 à la cellule BF4.
+Vous ne devez pas modifier ces cellules.
+Semaine d’affichage : l’étiquette figure dans la cellule C4.";;Semaine d’affichage :;;1;;;;Séance 1;;;;;;;Séance 2;;;;;;;Séance 3;;;;;;;;
+"Les cellules I5 à BL5 contiennent le numéro de jour pour la semaine représentée dans le bloc de cellules au-dessus de chaque cellule de date, et leurs valeurs sont calculées automatiquement.
+Vous ne devez pas modifier ces cellules.
+La date du jour est entourée de rouge (hex #AD3815), depuis la date du jour dans la ligne 5 jusqu’à la colonne de date entière à la fin du planning de projet.";;;;;;;;1=4H;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19;20;21;22;23
+"Cette ligne contient des en-têtes pour le planning de projet figurant en dessous. 
+Naviguez des cellules B6 à BL6 pour entendre l’énoncé du contenu. Première lettre de chaque jour de la semaine pour la date figurant au-dessus de cet en-tête. Commence dans la cellule I6, et s’étend jusqu’à la cellule BL6.
+Le tracé de la chronologie du projet est généré automatiquement en fonction des dates de début et de fin entrées, à l’aide de formats conditionnels.
+Ne modifiez pas le contenu des cellules des colonnes au-delà de la colonne I commençant à la cellule I7.";TÂCHE;;AVANCEMENT;Durée;;;JOURS;;;;;;;;;;;;;;;;;;;;;;;
+Ne supprimez pas cette ligne. Cette ligne est masquée afin de préserver une formule utilisée pour mettre en évidence le jour en cours au sein du planning de projet. ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+"La cellule B8 contient l’exemple de titre Phase 1. 
+Entrez un nouveau titre dans la cellule B8.
+Entrez un nom auquel attribuer la phase, s’il s’applique à votre projet, dans la cellule C8.
+Entrez l’avancement pour la phase entière, si cela s’applique à votre projet, dans la cellule D8.
+Entrez les dates de début et de fin de la phase entière, si cela s’applique à votre projet, dans les cellules E8 et F8. 
+Le diagramme de Gantt remplit automatiquement les dates et ombres appropriées en fonction de l’avancement entré.
+Pour supprimer la phase et travailler uniquement à partir de tâches, supprimez simplement cette ligne.";Programmation de LED;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+"La cellule B9 contient l’exemple de tâche « Tâche 1 ». 
+Entrez un nouveau nom de tâche dans la cellule B9.
+Entrez une personne à laquelle attribuer la tâche dans la cellule C9.
+Entrez l’avancement de la tâche dans la cellule D9. Une barre de progression apparaît dans la cellule, qui est ombrée en fonction du nombre figurant dans la cellule. Par exemple, un avancement de 50 pour cent ombre la moitié de la cellule.
+Entrez la date de début de la tâche dans la cellule E9.
+Entrez la date de fin de tâche dans la cellule F9.
+Une barre d’état ombrée pour les dates entrées apparaît dans les blocs de la cellule I9 à la cellule BL9. ";Comprendre programmation LED;;0%;8H;;;;;;;;;;;;;;;;;;;;;;;;;;
+"Les lignes 10 à 13 répètent le modèle de la ligne 9. 
+Répétez les instructions de la cellule A9 pour toutes les lignes de tâche dans cette feuille de calcul. Remplacez les exemples de données.
+Un exemple d’une autre phase commence à la cellule A14. 
+Continuez d’entrer des tâches dans les cellules A10 à A13, ou accédez à la cellule A14 pour en savoir plus.";Test;;0%;4H;;;;;;;;;;;;;;;;;;;;;;;;;;
+"La cellule à droite contient l’exemple titre Phase 2. 
+Vous pouvez créer une phase à tout moment dans la colonne B. Ce planning de projet n’exige pas de phases. Pour supprimer la phase, supprimez simplement la ligne.
+Pour créer un bloc de nouvelle phase dans cette ligne, entrez un nouveau titre dans la cellule à droite.
+Pour ajouter une tâche à la phase au-dessus, entrez une nouvelle ligne au-dessus de celle-ci, puis remplissez-la des données de la tâche comme dans l’instruction de la cellule A9.
+Mettez à jour les détails de la phase dans la cellule à droite en fonction de l’instruction de la cellule A8.
+Continuez de naviguer vers le bas dans les cellules de la colonne A pour en savoir plus.
+Si vous n’avez pas ajouté de nouvelles lignes dans cette feuille de calcul, vous constaterez que 2 exemples de blocs de phase supplémentaires ont été créés pour vous dans les cellules B20 et B26. Dans le cas contraire, naviguez dans les cellules de la colonne A pour trouver des blocs supplémentaires. 
+Répétez les instructions des cellules A8 et A9 chaque fois que c’est nécessaire.";Programmation BT;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;Comprendre BT android;;0%;12H;;;;;;;;;;;;;;;;;;;;;;;;;;
+;Comprendre BT Micro;;0%;12H;;;;;;;;;;;;;;;;;;;;;;;;;;
+;Test liaison;;0%;12H;;;;;;;;;;;;;;;;;;;;;;;;;;
+Exemple de bloc de titre de phase;Création Appli Android;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;Modèle simple BT;;0%;8H;;;;;;;;;;;;;;;;;;;;;;;;;;
+;Modéle final;;0%;10H;;;;;;;;;;;;;;;;;;;;;;;;;;
+Exemple de bloc de titre de phase; carte électronique;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;Schéma;;0%;8H;;;;;;;;;;;;;;;;;;;;;;;;;;
+;PCB;;0%;4H;;;;;;;;;;;;;;;;;;;;;;;;;;
+;Soudage;;0%;4H;;;;;;;;;;;;;;;;;;;;;;;;;;
+;Test;;0%;8H;;;;;;;;;;;;;;;;;;;;;;;;;;
+Ceci est une ligne vide.; Solidwork (optionnel);;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+"Cette ligne marque la fin du planning de projet. N’ENTREZ rien dans cette ligne. 
+Insérez de nouvelles lignes au-dessus de celle-ci pour continuer d’élaborer votre planning de projet.";;;0%;;;;;;;;;;;;;;;;;;;;;;;;;;;
