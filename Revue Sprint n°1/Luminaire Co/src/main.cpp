@@ -24,7 +24,7 @@ void setup()
     // Two strips of LEDs, one in HD mode, one in software gamma mode.
   FastLED.addLeds<APA102, DATA_PIN, CLOCK_PIN, RGB>(leds, NUM_LEDS); 
   // indique la ref de la led, on donne son DI et CI 
-  FastLED.setBrightness(127); //111+11111 = 255 // à voir 
+  FastLED.setBrightness(90); //111+11111 = 255 // à voir 
   
 }
 
@@ -43,11 +43,26 @@ void loop()
 
   for (int i = 0; i < NUM_LEDS; i++) {
       
-      CRGB c(255, 0, 255);  // Just make a shade of white.
+      CRGB c(227, 0, 189);  // Just make a shade of white.
      leds[i] = c;
-     Serial.printf("LED ok");
   }
   FastLED.show();  // All LEDs are now displayed.
-  delay(8); 
+  delay(1000); 
+
+  for (int i = 0; i < NUM_LEDS; i++) {
+      
+      CRGB c(255, 150, 50);  // Just make a shade of white.
+     leds[i] = c;
+  }
+  FastLED.show();  // All LEDs are now displayed.
+  delay(1000); 
+
+  for (int i = 0; i < NUM_LEDS; i++) {
+      
+      CRGB c(200, 100, 255);  // Just make a shade of white.
+     leds[i] = c;
+  }
+  FastLED.show();  // All LEDs are now displayed.
+  delay(1000); 
 
 }
