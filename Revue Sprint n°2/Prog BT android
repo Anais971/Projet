@@ -1,0 +1,228 @@
+
+Seulement pour activer le bluetooth
+https://www.youtube.com/watch?v=S9KHYz1we34
+
+Exemple de code (activation, envoie, recept)
+
+LES PERMISSIONS
+
+<uses-permission android:name="android.permission.BLUETOOTH" />
+<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+INTERFACE
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Bouton pour connecter l'appareil Bluetooth -->
+    <Button
+        android:id="@+id/connectButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Connecter au Bluetooth"
+        android:layout_marginTop="100dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <!-- Bouton pour envoyer des données -->
+    <Button
+        android:id="@+id/sendButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Envoyer des données"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/connectButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <!-- TextView pour afficher les données reçues -->
+    <TextView
+        android:id="@+id/receivedData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Données reçues :"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/sendButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+LE MAIN
+
+package com.example.bluetoothcommunication
+
+import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothDevice
+import android.bluetooth.BluetoothSocket
+import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import java.io.IOException
+import java.io.InputStream
+import java.io.OutputStream
+import java.util.UUID
+
+class MainActivity : AppCompatActivity() {
+
+    // Déclaration du BluetoothAdapter qui permet d'interagir avec le Bluetooth de l'appareil
+    private val bluetoothAdapter: BluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
+
+    // Déclaration des éléments d'interface utilisateur
+    private lateinit var connectButton: Button
+    private lateinit var sendButton: Button
+    private lateinit var receivedDataTextView: TextView
+
+    // BluetoothSocket est utilisé pour établir une connexion Bluetooth
+    private var bluetoothSocket: BluetoothSocket? = null
+
+    // UUID standard pour la communication Bluetooth SPP (Serial Port Profile)
+    private val serverSocketUUID: UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB")
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        // Initialisation des boutons et TextView à partir du layout XML
+        connectButton = findViewById(R.id.connectButton)
+        sendButton = findViewById(R.id.sendButton)
+        receivedDataTextView = findViewById(R.id.receivedData)
+
+        // Vérification si le Bluetooth est disponible et activé
+        if (bluetoothAdapter == null || !bluetoothAdapter.isEnabled) {
+            // Si le Bluetooth est désactivé ou non disponible, afficher un message d'erreur
+            Toast.makeText(this, "Bluetooth non disponible ou non activé", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        // Lorsque l'utilisateur clique sur "Connecter au Bluetooth"
+        connectButton.setOnClickListener {
+            // Commencer la découverte des appareils appairés Bluetooth
+            startBluetoothDiscovery()
+        }
+
+        // Lorsque l'utilisateur clique sur "Envoyer des données"
+        sendButton.setOnClickListener {
+            // Envoyer un message via Bluetooth
+            sendData("Hello from Android!")
+        }
+    }
+
+    // Démarre la recherche des appareils appairés
+    private fun startBluetoothDiscovery() {
+        // Récupérer les appareils appairés à l'appareil
+        val pairedDevices = bluetoothAdapter.bondedDevices
+
+        // Si des appareils sont appairés, tenter de se connecter au premier
+        if (pairedDevices.isNotEmpty()) {
+            // Prendre le premier appareil appairé (vous pouvez choisir un autre appareil si nécessaire)
+            val device = pairedDevices.firstOrNull()
+            device?.let {
+                // Essayer de se connecter à l'appareil sélectionné
+                connectToBluetoothDevice(it)
+            }
+        } else {
+            // Si aucun appareil appairé n'est trouvé, afficher un message
+            Toast.makeText(this, "Aucun appareil appairé trouvé", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    // Tente de se connecter à un appareil Bluetooth donné
+    private fun connectToBluetoothDevice(device: BluetoothDevice) {
+        try {
+            // Crée un BluetoothSocket pour la communication RFCOMM avec l'appareil sélectionné
+            bluetoothSocket = device.createRfcommSocketToServiceRecord(serverSocketUUID)
+
+            // Connecte le BluetoothSocket à l'appareil
+            bluetoothSocket?.connect()
+
+            // Affiche un message de succès une fois la connexion établie
+            Toast.makeText(this, "Connexion réussie à ${device.name}", Toast.LENGTH_SHORT).show()
+
+            // Démarre un thread pour écouter les données reçues
+            listenForData()
+        } catch (e: IOException) {
+            // Si la connexion échoue, afficher un message d'erreur
+            Toast.makeText(this, "Échec de la connexion", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    // Envoie des données à l'appareil connecté via Bluetooth
+    private fun sendData(message: String) {
+        bluetoothSocket?.let {
+            try {
+                // Récupérer le flux de sortie du BluetoothSocket pour envoyer les données
+                val outputStream: OutputStream = it.outputStream
+
+                // Convertir le message en tableau de bytes et l'envoyer
+                outputStream.write(message.toByteArray())
+
+                // Afficher un message de confirmation
+                Toast.makeText(this, "Données envoyées : $message", Toast.LENGTH_SHORT).show()
+            } catch (e: IOException) {
+                // Si l'envoi des données échoue, afficher un message d'erreur
+                Toast.makeText(this, "Erreur d'envoi de données", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    // Écoute en continu les données reçues via Bluetooth
+    private fun listenForData() {
+        bluetoothSocket?.let {
+            // Lancer un thread pour écouter les données
+            Thread {
+                try {
+                    // Récupérer le flux d'entrée pour lire les données reçues
+                    val inputStream: InputStream = it.inputStream
+
+                    // Buffer pour stocker les données reçues
+                    val buffer = ByteArray(1024)
+                    var bytes: Int
+
+                    // Boucle infinie pour lire les données dès qu'elles arrivent
+                    while (true) {
+                        // Lire les données dans le buffer
+                        bytes = inputStream.read(buffer)
+
+                        // Si des données ont été reçues, les afficher
+                        if (bytes != -1) {
+                            val receivedMessage = String(buffer, 0, bytes)
+                            runOnUiThread {
+                                // Mettre à jour l'interface pour afficher les données reçues
+                                receivedDataTextView.text = "Données reçues : $receivedMessage"
+                            }
+                        }
+                    }
+                } catch (e: IOException) {
+                    // En cas d'erreur, afficher un message
+                    runOnUiThread {
+                        Toast.makeText(this, "Erreur de réception", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }.start()
+        }
+    }
+
+    // Lorsque l'activité est détruite, fermer le BluetoothSocket
+    override fun onDestroy() {
+        super.onDestroy()
+        try {
+            // Fermer la connexion Bluetooth
+            bluetoothSocket?.close()
+        } catch (e: IOException) {
+            // Afficher une erreur si la fermeture échoue
+            e.printStackTrace()
+        }
+    }
+}
+
+
+
