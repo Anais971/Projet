@@ -17,6 +17,9 @@ import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
 import java.util.UUID
+import kotlin.text.toByteArray
+import kotlin.collections.isNullOrEmpty
+import kotlin.collections.firstOrNull
 
 class MainActivity : AppCompatActivity() {
 
@@ -165,10 +168,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun String(buffer: ByteArray, i: Int, bytes: Int): String {
-
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         try {
@@ -179,6 +178,3 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-private fun String.toByteArray(): Any {
-
-}
