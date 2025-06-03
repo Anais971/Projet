@@ -19,8 +19,11 @@ void setup()
 
 void loop()
 {
-  compteur++;
-  SerialBT.print("Valeur du compteur: ");
-  SerialBT.println(compteur);
-  delay(500);
+  if (Serial.available()) {
+    SerialBT.write(Serial.read());
+  }
+  if (SerialBT.available()) {
+    Serial.write(SerialBT.read());
+  }
+
 }
