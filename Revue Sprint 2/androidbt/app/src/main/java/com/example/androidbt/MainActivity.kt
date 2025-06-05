@@ -175,6 +175,7 @@ class MainActivity : AppCompatActivity() {
                 if (device != null) {
                     Log.i("BT", "Device choisi - ${device.name} - $address")
                     ConnectThread(device).start()
+                    Toast.makeText(this, "Appareil connecté", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(this, "Erreur : périphérique introuvable", Toast.LENGTH_SHORT).show()
                 }
