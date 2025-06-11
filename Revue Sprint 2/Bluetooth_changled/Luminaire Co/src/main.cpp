@@ -109,7 +109,7 @@ void setup()
     // Two strips of LEDs, one in HD mode, one in software gamma mode.
   FastLED.addLeds<APA102, DATA_PIN, CLOCK_PIN, RGB>(leds, NUM_LEDS); 
   // indique la ref de la led, on donne son DI et CI 
-  FastLED.setBrightness(90); //111+11111 = 255 // à voir 
+  FastLED.setBrightness(100); //111+11111 = 255 // à voir 
   
 
   
