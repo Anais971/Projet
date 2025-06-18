@@ -22,19 +22,24 @@
         android:id="@+id/permbt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/genshin2"
         android:text="Permissions Bt"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/actbt"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.120000005" />
+        app:layout_constraintVertical_bias="0.18" />
 
     <Button
         android:id="@+id/actbt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/genshin2"
         android:text="Activer le Bluetooth"
+        android:textSize="16sp"
+        app:icon="@drawable/actvg"
         app:layout_constraintBottom_toBottomOf="@+id/permbt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -45,7 +50,10 @@
         android:id="@+id/appas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/genshin2"
+        android:lineSpacingExtra="16sp"
         android:text="Appareils associés"
+        app:icon="@drawable/listg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.09"
@@ -56,9 +64,10 @@
     <ListView
         android:id="@+id/app"
         android:layout_width="308dp"
-
+        android:fontFamily="@font/genshin2"
         android:layout_height="184dp"
         android:layout_marginBottom="28dp"
+        android:background="#51D78D79"
         app:layout_constraintBottom_toTopOf="@+id/appas"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -70,7 +79,10 @@
         android:id="@+id/effas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/genshin2"
         android:text="Effacer la liste"
+        android:textSize="16sp"
+        app:icon="@drawable/effacg"
         app:layout_constraintEnd_toEndOf="@+id/appas"
         app:layout_constraintStart_toStartOf="@+id/appas"
         app:layout_constraintTop_toBottomOf="@+id/appas" />
@@ -80,14 +92,16 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/genshin1"
         android:text="CONNECTION BLUETOOTH"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="60sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.524"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.042" />
+        app:layout_constraintVertical_bias="0.050000012" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
@@ -106,29 +120,39 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:backgroundTint="#AA00FF"
+        android:fontFamily="@font/genshin2"
         android:text="Controle LED"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textSize="20sp"
+        app:icon="@drawable/connec"
+        app:iconGravity="textStart"
+        app:iconSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pag"
-        app:layout_constraintVertical_bias="0.16000003" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/pag"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:backgroundTint="#AA00FF"
+        android:fontFamily="@font/genshin2"
         android:text="Connection bluetooth"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textSize="20sp"
+        app:icon="@drawable/ble"
+        app:iconGravity="textStart"
+        app:iconSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.85" />
+        app:layout_constraintVertical_bias="0.87" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

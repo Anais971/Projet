@@ -22,10 +22,15 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="#3F0539BC"
+        android:fontFamily="@font/genshin1"
         android:text="CONTROLE LED"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#FFFFFF"
+        android:textSize="60sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,6 +41,9 @@
         android:id="@+id/Mess"
         android:layout_width="149dp"
         android:layout_height="54dp"
+        android:fontFamily="@font/genshin2"
+        android:textColor="#1F1D1D"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/cc"
@@ -50,17 +58,19 @@
         android:layout_width="274dp"
         android:layout_height="49dp"
         android:layout_marginStart="8dp"
+        android:fontFamily="@font/genshin2"
         android:text="Envoyer"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/cc"
         app:layout_constraintStart_toStartOf="@+id/Mess"
         app:layout_constraintTop_toBottomOf="@+id/Mess"
-        app:layout_constraintVertical_bias="0.142" />
+        app:layout_constraintVertical_bias="0.25" />
 
     <ImageView
         android:id="@+id/myImageView2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="660dp"
+        android:layout_height="345dp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@+id/Mess"
@@ -72,8 +82,8 @@
 
     <View
         android:id="@+id/cc"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="111dp"
+        android:layout_height="107dp"
         android:background="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/sendbt"
         app:layout_constraintDimensionRatio="3:3"
