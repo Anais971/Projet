@@ -47,6 +47,9 @@ void recupled(char blu)
     return;
   }
 
+  //ici pour essayer un changement de couleur qui défile
+  // else { (on mais à l'exterieur) dyna = blu; }
+
   if (isReceiving && recIndex < 6 && blu != '\0') {
     recblu[recIndex++] = blu;
 
@@ -86,8 +89,12 @@ void envoieled(int r, int g, int b) {
 }
 
 
-
-
+//void dynamicled(int r, int g, int b){
+// if(dyna = "a"){
+//
+// mode dynamique elementaire ?
+//
+//}
 
 
 
