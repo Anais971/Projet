@@ -89,12 +89,175 @@ void envoieled(int r, int g, int b) {
 }
 
 
-//void dynamicled(int r, int g, int b){
-// if(dyna = "a"){
-//
-// mode dynamique elementaire ?
-//
-//}
+/*void dynamicled(int r, int g, int b){
+ if(dyna = "a"){
+ mode dynamique elementaire ?
+
+animation_step++;
+
+// Si on atteint la fin du cycle (valeur max), on recommence à 0
+  if (animation_step >= 1530) {
+      animation_step = 0;
+  }
+
+// Stocke la valeur courante de l’animation (entre 0 et 1530)
+int autosli = animation_step;
+    
+
+}*/
+
+static int redled(int sli)// faire une fonction pour tous les elements
+{
+  int red;     // valeur de sortie
+  int slideb;  // base de décalage sur l’axe du slider
+  int Y;       // valeur de référence pour le calcul
+
+  // 1re phase : Vert augmente, Rouge reste à 255
+  if ((sli >= 0) && (sli < 1*255)) {
+    red = 255;
+  }
+
+  // 2e phase : Rouge descend, Vert reste
+  else if ((sli >= 1*255) && (sli < 2*255)) {
+    slideb = 1*255;
+    Y = 255;
+    red = A * (sli - slideb) + Y;
+  }
+
+  // 5e phase : Rouge remonte, Bleu reste
+  else if ((sli >= 4*255) && (sli < 5*255)) {
+    slideb = 4*255;
+    Y = 0;
+    red = -A * (sli - slideb) + Y;
+  }
+
+  // 6e phase : Bleu descend, Rouge reste
+  else if ((sli >= 5*255) && (sli < 6*255)) {
+    red = 255;
+  }
+
+  // Valeur par défaut (en dehors des plages définies)
+  else {
+    red = 0;
+  }
+
+  return red;
+}
+
+static int redled(int sli)// faire une fonction pour tous les elements
+{
+  int red;     // valeur de sortie
+  int slideb;  // base de décalage sur l’axe du slider
+  int Y;       // valeur de référence pour le calcul
+
+  // 1re phase : Vert augmente, Rouge reste à 255
+  if ((sli >= 0) && (sli < 1*255)) {
+    red = 255;
+  }
+
+  // 2e phase : Rouge descend, Vert reste
+  else if ((sli >= 1*255) && (sli < 2*255)) {
+    slideb = 1*255;
+    Y = 255;
+    red = A * (sli - slideb) + Y;
+  }
+
+  // 5e phase : Rouge remonte, Bleu reste
+  else if ((sli >= 4*255) && (sli < 5*255)) {
+    slideb = 4*255;
+    Y = 0;
+    red = -A * (sli - slideb) + Y;
+  }
+
+  // 6e phase : Bleu descend, Rouge reste
+  else if ((sli >= 5*255) && (sli < 6*255)) {
+    red = 255;
+  }
+
+  // Valeur par défaut (en dehors des plages définies)
+  else {
+    red = 0;
+  }
+
+  return red;
+}
+
+// Fonction pour calculer la valeur du canal vert
+static int greenled(int sli)
+{
+  int gre;
+  int slideb;
+  int Y;
+
+  // 1re phase : Vert monte
+  if ((sli >= 0) && (sli < 1*255)) {
+    slideb = 0;
+    Y = 0;
+    gre = -A * (sli - slideb) + Y;
+  }
+
+  // 2e phase : Rouge descend, Vert reste
+  else if ((sli >= 1*255) && (sli < 2*255)) {
+    gre = 255;
+  }
+
+  // 3e phase : Bleu monte, Vert reste
+  else if ((sli >= 2*255) && (sli < 3*255)) {
+    gre = 255;
+  }
+
+  // 4e phase : Vert descend
+  else if ((sli >= 3*255) && (sli < 4*255)) {
+    slideb = 3*255;
+    Y = 255;
+    gre = A * (sli - slideb) + Y;
+  }
+
+  else {
+    gre = 0;
+  }
+
+  return gre;
+}
+
+
+// Fonction pour calculer la valeur du canal bleu
+static int blueled(int sli)
+{
+  int blue;
+  int slideb;
+  int Y;
+
+  // 3e phase : Bleu monte
+  if ((sli >= 2*255) && (sli < 3*255)) {
+    slideb = 2*255;
+    Y = 0;
+    blue = -A * (sli - slideb) + Y;
+  }
+
+  // 4e phase : Vert descend, Bleu reste
+  else if ((sli >= 3*255) && (sli < 4*255)) {
+    blue = 255;
+  }
+
+  // 5e phase : Rouge monte, Bleu reste
+  else if ((sli >= 4*255) && (sli < 5*255)) {
+    blue = 255;
+  }
+
+  // 6e phase : Bleu descend
+  else if ((sli >= 5*255) && (sli < 6*255)) {
+    slideb = 5*255;
+    Y = 255;
+    blue = A * (sli - slideb) + Y;
+  }
+
+  else {
+    blue = 0;
+  }
+
+  return blue;
+}
 
 
 
