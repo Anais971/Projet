@@ -23,6 +23,54 @@ bool isReceiving = false;
 int recIndex = 0;
 
 CRGB leds[NUM_LEDS] = {0}; // initialise le tableau de led en fonction du nombre de led
+CRGBPalette16 currentPalette = RainbowColors_p;
+TBlendType currentBlending = LINEARBLEND;
+static uint8_t startIndex = 0;
+bool isEffectActive = false;
+
+CRGBPalette16 pyroPalette = CRGBPalette16(
+  CRGB::Red, CRGB::OrangeRed, CRGB::DarkOrange, CRGB::Yellow,
+  CRGB::Red, CRGB::Orange, CRGB::FireBrick, CRGB::Red,
+  CRGB::OrangeRed, CRGB::Orange, CRGB::Red, CRGB::DarkOrange,
+  CRGB::Orange, CRGB::Yellow, CRGB::Red, CRGB::Orange);
+
+CRGBPalette16 hydroPalette = CRGBPalette16(
+  CRGB::Blue, CRGB::DeepSkyBlue, CRGB::Cyan, CRGB::Aqua,
+  CRGB::DodgerBlue, CRGB::LightBlue, CRGB::Teal, CRGB::Blue,
+  CRGB::Aqua, CRGB::DeepSkyBlue, CRGB::Blue, CRGB::Teal,
+  CRGB::Cyan, CRGB::Blue, CRGB::DodgerBlue, CRGB::LightBlue);
+
+CRGBPalette16 anemoPalette = CRGBPalette16(
+  CRGB::Green, CRGB::Aquamarine, CRGB::Lime, CRGB::SpringGreen,
+  CRGB::SeaGreen, CRGB::LightSeaGreen, CRGB::MediumAquamarine, CRGB::Green,
+  CRGB::Aquamarine, CRGB::LightGreen, CRGB::Green, CRGB::SpringGreen,
+  CRGB::Lime, CRGB::LightSeaGreen, CRGB::Green, CRGB::Aquamarine);
+
+CRGBPalette16 electroPalette = CRGBPalette16(
+  CRGB::Purple, CRGB::Violet, CRGB::MediumPurple, CRGB::DarkViolet,
+  CRGB::Indigo, CRGB::Orchid, CRGB::DarkOrchid, CRGB::Magenta,
+  CRGB::Purple, CRGB::Violet, CRGB::MediumPurple, CRGB::DarkViolet,
+  CRGB::Indigo, CRGB::Orchid, CRGB::DarkOrchid, CRGB::Magenta);
+
+CRGBPalette16 cryoPalette = CRGBPalette16(
+  CRGB::White, CRGB::LightCyan, CRGB::AliceBlue, CRGB::LightBlue,
+  CRGB::Snow, CRGB::MintCream, CRGB::GhostWhite, CRGB::Azure,
+  CRGB::White, CRGB::LightCyan, CRGB::AliceBlue, CRGB::LightBlue,
+  CRGB::Snow, CRGB::MintCream, CRGB::GhostWhite, CRGB::Azure);
+
+CRGBPalette16 geoPalette = CRGBPalette16(
+  CRGB::Gold, CRGB::DarkGoldenrod, CRGB::Orange, CRGB::Peru,
+  CRGB::Goldenrod, CRGB::SandyBrown, CRGB::Chocolate, CRGB::Gold,
+  CRGB::DarkGoldenrod, CRGB::Orange, CRGB::Peru, CRGB::Goldenrod,
+  CRGB::SandyBrown, CRGB::Chocolate, CRGB::Orange, CRGB::Gold);
+
+CRGBPalette16 dendroPalette = CRGBPalette16(
+  CRGB::ForestGreen, CRGB::DarkOliveGreen, CRGB::LimeGreen, CRGB::OliveDrab,
+  CRGB::SeaGreen, CRGB::GreenYellow, CRGB::Chartreuse, CRGB::LawnGreen,
+  CRGB::ForestGreen, CRGB::DarkOliveGreen, CRGB::LimeGreen, CRGB::OliveDrab,
+  CRGB::SeaGreen, CRGB::GreenYellow, CRGB::Chartreuse, CRGB::LawnGreen);
+
+
 
 
 char bluetoothled()
@@ -47,8 +95,6 @@ void recupled(char blu)
     return;
   }
 
-  //ici pour essayer un changement de couleur qui défile
-  // else { (on mais à l'exterieur) dyna = blu; }
 
   if (isReceiving && recIndex < 6 && blu != '\0') {
     recblu[recIndex++] = blu;
@@ -88,175 +134,31 @@ void envoieled(int r, int g, int b) {
   FastLED.show();
 }
 
-
-/*void dynamicled(int r, int g, int b){
- if(dyna = "a"){
- mode dynamique elementaire ?
-
-animation_step++;
-
-// Si on atteint la fin du cycle (valeur max), on recommence à 0
-  if (animation_step >= 1530) {
-      animation_step = 0;
+void handleElementEffect(char c) {
+  isEffectActive = true;
+  switch (c) {
+    case 'P': currentPalette = pyroPalette; break;
+    case 'H': currentPalette = hydroPalette; break;
+    case 'A': currentPalette = anemoPalette; break;
+    case 'E': currentPalette = electroPalette; break;
+    case 'C': currentPalette = cryoPalette; break;
+    case 'G': currentPalette = geoPalette; break;
+    case 'D': currentPalette = dendroPalette; break;
+    default:  isEffectActive = false; break;
   }
-
-// Stocke la valeur courante de l’animation (entre 0 et 1530)
-int autosli = animation_step;
-    
-
-}*/
-
-static int redled(int sli)// faire une fonction pour tous les elements
-{
-  int red;     // valeur de sortie
-  int slideb;  // base de décalage sur l’axe du slider
-  int Y;       // valeur de référence pour le calcul
-
-  // 1re phase : Vert augmente, Rouge reste à 255
-  if ((sli >= 0) && (sli < 1*255)) {
-    red = 255;
-  }
-
-  // 2e phase : Rouge descend, Vert reste
-  else if ((sli >= 1*255) && (sli < 2*255)) {
-    slideb = 1*255;
-    Y = 255;
-    red = A * (sli - slideb) + Y;
-  }
-
-  // 5e phase : Rouge remonte, Bleu reste
-  else if ((sli >= 4*255) && (sli < 5*255)) {
-    slideb = 4*255;
-    Y = 0;
-    red = -A * (sli - slideb) + Y;
-  }
-
-  // 6e phase : Bleu descend, Rouge reste
-  else if ((sli >= 5*255) && (sli < 6*255)) {
-    red = 255;
-  }
-
-  // Valeur par défaut (en dehors des plages définies)
-  else {
-    red = 0;
-  }
-
-  return red;
 }
 
-static int redled(int sli)// faire une fonction pour tous les elements
-{
-  int red;     // valeur de sortie
-  int slideb;  // base de décalage sur l’axe du slider
-  int Y;       // valeur de référence pour le calcul
-
-  // 1re phase : Vert augmente, Rouge reste à 255
-  if ((sli >= 0) && (sli < 1*255)) {
-    red = 255;
+void updateEffectCycle() {
+  if (isEffectActive) {
+    startIndex++;
+    uint8_t colorIndex = startIndex;
+    for (int i = 0; i < NUM_LEDS; i++) {
+      leds[i] = ColorFromPalette(currentPalette, colorIndex, 255, LINEARBLEND);
+      colorIndex += 3;
+    }
+    FastLED.show();
+    delay(20);
   }
-
-  // 2e phase : Rouge descend, Vert reste
-  else if ((sli >= 1*255) && (sli < 2*255)) {
-    slideb = 1*255;
-    Y = 255;
-    red = A * (sli - slideb) + Y;
-  }
-
-  // 5e phase : Rouge remonte, Bleu reste
-  else if ((sli >= 4*255) && (sli < 5*255)) {
-    slideb = 4*255;
-    Y = 0;
-    red = -A * (sli - slideb) + Y;
-  }
-
-  // 6e phase : Bleu descend, Rouge reste
-  else if ((sli >= 5*255) && (sli < 6*255)) {
-    red = 255;
-  }
-
-  // Valeur par défaut (en dehors des plages définies)
-  else {
-    red = 0;
-  }
-
-  return red;
-}
-
-// Fonction pour calculer la valeur du canal vert
-static int greenled(int sli)
-{
-  int gre;
-  int slideb;
-  int Y;
-
-  // 1re phase : Vert monte
-  if ((sli >= 0) && (sli < 1*255)) {
-    slideb = 0;
-    Y = 0;
-    gre = -A * (sli - slideb) + Y;
-  }
-
-  // 2e phase : Rouge descend, Vert reste
-  else if ((sli >= 1*255) && (sli < 2*255)) {
-    gre = 255;
-  }
-
-  // 3e phase : Bleu monte, Vert reste
-  else if ((sli >= 2*255) && (sli < 3*255)) {
-    gre = 255;
-  }
-
-  // 4e phase : Vert descend
-  else if ((sli >= 3*255) && (sli < 4*255)) {
-    slideb = 3*255;
-    Y = 255;
-    gre = A * (sli - slideb) + Y;
-  }
-
-  else {
-    gre = 0;
-  }
-
-  return gre;
-}
-
-
-// Fonction pour calculer la valeur du canal bleu
-static int blueled(int sli)
-{
-  int blue;
-  int slideb;
-  int Y;
-
-  // 3e phase : Bleu monte
-  if ((sli >= 2*255) && (sli < 3*255)) {
-    slideb = 2*255;
-    Y = 0;
-    blue = -A * (sli - slideb) + Y;
-  }
-
-  // 4e phase : Vert descend, Bleu reste
-  else if ((sli >= 3*255) && (sli < 4*255)) {
-    blue = 255;
-  }
-
-  // 5e phase : Rouge monte, Bleu reste
-  else if ((sli >= 4*255) && (sli < 5*255)) {
-    blue = 255;
-  }
-
-  // 6e phase : Bleu descend
-  else if ((sli >= 5*255) && (sli < 6*255)) {
-    slideb = 5*255;
-    Y = 255;
-    blue = A * (sli - slideb) + Y;
-  }
-
-  else {
-    blue = 0;
-  }
-
-  return blue;
 }
 
 
@@ -279,7 +181,7 @@ void setup()
     // Two strips of LEDs, one in HD mode, one in software gamma mode.
   FastLED.addLeds<APA102, DATA_PIN, CLOCK_PIN, RGB>(leds, NUM_LEDS); 
   // indique la ref de la led, on donne son DI et CI 
-  FastLED.setBrightness(100); //111+11111 = 255 // à voir 
+  FastLED.setBrightness(90); //111+11111 = 255 // à voir 
   
 
   
@@ -305,6 +207,12 @@ void loop()
 
   char recep = bluetoothled();
   recupled(recep);
+
+  if (recep != '\0') {
+    handleElementEffect(recep);
+  }
+
+  updateEffectCycle();
 
   if (recIndex == 6 && !isReceiving){
 
