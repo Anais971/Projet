@@ -137,13 +137,13 @@ void envoieled(int r, int g, int b) {
 void handleElementEffect(char c) {
   isEffectActive = true;
   switch (c) {
-    case 'P': currentPalette = pyroPalette; break;
-    case 'H': currentPalette = hydroPalette; break;
-    case 'A': currentPalette = anemoPalette; break;
-    case 'E': currentPalette = electroPalette; break;
-    case 'C': currentPalette = cryoPalette; break;
-    case 'G': currentPalette = geoPalette; break;
-    case 'D': currentPalette = dendroPalette; break;
+    case 'p': currentPalette = pyroPalette; break;
+    case 'h': currentPalette = hydroPalette; break;
+    case 'a': currentPalette = anemoPalette; break;
+    case 'e': currentPalette = electroPalette; break;
+    case 'c': currentPalette = cryoPalette; break;
+    case 'g': currentPalette = geoPalette; break;
+    case 'd': currentPalette = dendroPalette; break;
     default:  isEffectActive = false; break;
   }
 }
@@ -167,7 +167,7 @@ void setup()
 {
 
   Serial.begin(115200);       // Initialisation du port série pour la communication avec le moniteur série
-  SerialBT.begin("ESP32 AB"); // Nom de l'appareil Bluetooth
+  SerialBT.begin("PaimonLight"); // Nom de l'appareil Bluetooth
   Serial.println("Initialisation Bluetooth...");
 
   // Attendre que la connexion Bluetooth soit établie
