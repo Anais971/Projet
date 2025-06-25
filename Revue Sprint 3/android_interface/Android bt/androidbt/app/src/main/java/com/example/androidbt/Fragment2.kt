@@ -54,6 +54,16 @@ class Fragment2 : Fragment() {
         val tMess : TextView = vue.findViewById(R.id.Mess)
         val color : ImageView = vue.findViewById(R.id.myImageView2)
         val couleur : View = vue.findViewById(R.id.cc)
+        val pyr : Button = vue.findViewById(R.id.pyro)
+        val ge : Button = vue.findViewById(R.id.geo)
+        val dend : Button = vue.findViewById(R.id.dendro)
+        val elec : Button = vue.findViewById(R.id.electro)
+        val hydr : Button = vue.findViewById(R.id.hydro)
+        val cry : Button = vue.findViewById(R.id.cryo)
+        val anem : Button = vue.findViewById(R.id.anemo)
+
+
+
 
 
         color.post {
@@ -105,6 +115,105 @@ class Fragment2 : Fragment() {
                 Toast.makeText(requireContext(), "Message vide", Toast.LENGTH_SHORT).show()
             }
         }
+
+        pyr.setOnClickListener {
+
+            hexColor = "p"
+
+            val message = hexColor.toString()
+            if (message.isNotEmpty()) {
+                (activity as? MainActivity)?.envoyerMessage(message)
+
+                Toast.makeText(requireContext(), "Message envoyé", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), "Message vide", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        ge.setOnClickListener {
+
+            hexColor = "g"
+
+            val message = hexColor.toString()
+            if (message.isNotEmpty()) {
+                (activity as? MainActivity)?.envoyerMessage(message)
+
+                Toast.makeText(requireContext(), "Message envoyé", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), "Message vide", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        dend.setOnClickListener {
+
+            hexColor = "d"
+
+            val message = hexColor.toString()
+            if (message.isNotEmpty()) {
+                (activity as? MainActivity)?.envoyerMessage(message)
+
+                Toast.makeText(requireContext(), "Message envoyé", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), "Message vide", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        elec.setOnClickListener {
+
+            hexColor = "e"
+
+            val message = hexColor.toString()
+            if (message.isNotEmpty()) {
+                (activity as? MainActivity)?.envoyerMessage(message)
+
+                Toast.makeText(requireContext(), "Message envoyé", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), "Message vide", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        hydr.setOnClickListener {
+
+            hexColor = "h"
+
+            val message = hexColor.toString()
+            if (message.isNotEmpty()) {
+                (activity as? MainActivity)?.envoyerMessage(message)
+
+                Toast.makeText(requireContext(), "Message envoyé", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), "Message vide", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        cry.setOnClickListener {
+
+            hexColor = "c"
+
+            val message = hexColor.toString()
+            if (message.isNotEmpty()) {
+                (activity as? MainActivity)?.envoyerMessage(message)
+
+                Toast.makeText(requireContext(), "Message envoyé", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), "Message vide", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        anem.setOnClickListener {
+
+            hexColor = "a"
+
+            val message = hexColor.toString()
+            if (message.isNotEmpty()) {
+                (activity as? MainActivity)?.envoyerMessage(message)
+
+                Toast.makeText(requireContext(), "Message envoyé", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), "Message vide", Toast.LENGTH_SHORT).show()
+            }
+        }
+
 
         return vue
     }

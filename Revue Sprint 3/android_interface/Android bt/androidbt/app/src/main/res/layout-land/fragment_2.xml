@@ -72,8 +72,8 @@
 
     <ImageView
         android:id="@+id/myImageView2"
-        android:layout_width="660dp"
-        android:layout_height="345dp"
+        android:layout_width="653dp"
+        android:layout_height="342dp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@+id/Mess"
@@ -97,69 +97,112 @@
         app:layout_constraintVertical_bias="0.72" />
 
     <Button
-        android:id="@+id/Pyro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/cryo"
+        android:layout_width="90dp"
+        android:layout_height="58dp"
+        android:backgroundTint="#850539BC"
         android:text="Button"
-        tools:layout_editor_absoluteX="66dp"
-        tools:layout_editor_absoluteY="149dp" />
+        app:icon="@drawable/blable"
+        app:iconSize="40dp"
+        app:iconTint="#A7E5E8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.16"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.23000002" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/hydro"
+        android:layout_width="90dp"
+        android:layout_height="58dp"
+        android:backgroundTint="#850539BC"
         android:text="Button"
-        tools:layout_editor_absoluteX="66dp"
-        tools:layout_editor_absoluteY="231dp" />
+        app:icon="@drawable/bleg"
+        app:iconPadding="8dp"
+        app:iconSize="40dp"
+        app:iconTint="#11F5FD"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/cryo"
+        app:layout_constraintStart_toStartOf="@+id/cryo"
+        app:layout_constraintTop_toBottomOf="@+id/cryo"
+        app:layout_constraintVertical_bias="0.100000024" />
 
     <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/electro"
+        android:layout_width="90dp"
+        android:layout_height="58dp"
+        android:backgroundTint="#850539BC"
         android:text="Button"
-        tools:layout_editor_absoluteX="67dp"
-        tools:layout_editor_absoluteY="324dp" />
+        app:icon="@drawable/violet"
+        app:iconSize="40dp"
+        app:iconTint="#DCB9FD"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/hydro"
+        app:layout_constraintStart_toStartOf="@+id/hydro"
+        app:layout_constraintTop_toBottomOf="@+id/hydro"
+        app:layout_constraintVertical_bias="0.100000024" />
 
     <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
+        android:id="@+id/dendro"
+        android:layout_width="90dp"
+        android:layout_height="58dp"
+        android:backgroundTint="#850539BC"
+        android:text="d"
+        app:icon="@drawable/vertg"
+        app:iconSize="40dp"
+        app:iconTint="#A1D429"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.85"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.26" />
+        app:layout_constraintVertical_bias="0.18" />
 
     <Button
-        android:id="@+id/button5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        app:layout_constraintEnd_toEndOf="@+id/button4"
-        app:layout_constraintStart_toStartOf="@+id/button4"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />
-
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        app:layout_constraintEnd_toEndOf="@+id/button5"
-        app:layout_constraintStart_toStartOf="@+id/button5"
-        app:layout_constraintTop_toBottomOf="@+id/button5" />
-
-    <Button
-        android:id="@+id/button7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
+        android:id="@+id/anemo"
+        android:layout_width="90dp"
+        android:layout_height="58dp"
+        android:backgroundTint="#850539BC"
+        android:text="a"
+        app:icon="@drawable/vertble"
+        app:iconSize="40dp"
+        app:iconTint="#B1FDD8"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/button6"
-        app:layout_constraintStart_toStartOf="@+id/button6"
-        app:layout_constraintTop_toBottomOf="@+id/button6"
-        app:layout_constraintVertical_bias="0.100000024" />
+        app:layout_constraintEnd_toEndOf="@+id/dendro"
+        app:layout_constraintStart_toStartOf="@+id/dendro"
+        app:layout_constraintTop_toBottomOf="@+id/dendro"
+        app:layout_constraintVertical_bias="0.07" />
+
+    <Button
+        android:id="@+id/geo"
+        android:layout_width="90dp"
+        android:layout_height="58dp"
+        android:backgroundTint="#850539BC"
+        android:text="g"
+        app:icon="@drawable/orange"
+        app:iconSize="40dp"
+        app:iconTint="#F9DB5C"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/anemo"
+        app:layout_constraintStart_toStartOf="@+id/anemo"
+        app:layout_constraintTop_toBottomOf="@+id/anemo"
+        app:layout_constraintVertical_bias="0.08" />
+
+    <Button
+        android:id="@+id/pyro"
+        android:layout_width="90dp"
+        android:layout_height="58dp"
+        android:backgroundTint="#850539BC"
+        android:text="p"
+        app:icon="@drawable/rougg"
+        app:iconSize="40dp"
+        app:iconTint="#DF8B4F"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/geo"
+        app:layout_constraintStart_toStartOf="@+id/geo"
+        app:layout_constraintTop_toBottomOf="@+id/geo"
+        app:layout_constraintVertical_bias="0.09" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
