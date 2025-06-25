@@ -1411,22 +1411,22 @@
 	)
 	(global_label "CI"
 		(shape input)
-		(at 35.56 76.2 180)
+		(at 66.04 83.82 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right)
+			(justify left)
 		)
 		(uuid "30a8624b-7f65-40dc-9da5-3e082eb48534")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 30.7 76.2 0)
+			(at 70.9 83.82 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -1609,7 +1609,7 @@
 	)
 	(global_label "DI"
 		(shape input)
-		(at 66.04 66.04 0)
+		(at 66.04 99.06 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1619,7 +1619,7 @@
 		)
 		(uuid "f23fd154-80c5-430d-ae20-996d9053dccc")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 70.9 66.04 0)
+			(at 70.9 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)

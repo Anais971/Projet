@@ -135,30 +135,50 @@ void envoieled(int r, int g, int b) {
 }
 
 void handleElementEffect(char c) {
+
+  if (c == '\0' || c == '\n' || c == '\r') return;
+
   isEffectActive = true;
+  startIndex = 0;
   switch (c) {
-    case 'p': currentPalette = pyroPalette; break;
-    case 'h': currentPalette = hydroPalette; break;
-    case 'a': currentPalette = anemoPalette; break;
-    case 'e': currentPalette = electroPalette; break;
-    case 'c': currentPalette = cryoPalette; break;
-    case 'g': currentPalette = geoPalette; break;
-    case 'd': currentPalette = dendroPalette; break;
-    default:  isEffectActive = false; break;
+    case 'p': currentPalette = pyroPalette; Serial.println("→ PYRO"); break;
+    case 'h': currentPalette = hydroPalette; Serial.println("→ HYDRO"); break;
+    case 'a': currentPalette = anemoPalette; Serial.println("→ ANEMO"); break;
+    case 'e': currentPalette = electroPalette; Serial.println("→ ELECTRO"); break;
+    case 'c': currentPalette = cryoPalette; Serial.println("→ CRYO"); break;
+    case 'g': currentPalette = geoPalette; Serial.println("→ GEO"); break;
+    case 'd': currentPalette = dendroPalette; Serial.println("→ DENDRO"); break;
+    default:  isEffectActive = false; Serial.println("→ Inconnu"); break;
   }
+
+  Serial.print("Effet reçu : ");
+  Serial.println(c);
+
+}
+
+void debugPalette(CRGBPalette16 palette) {
+  for (int i = 0; i < NUM_LEDS; i++) {
+    uint8_t index = map(i, 0, NUM_LEDS - 1, 0, 255);
+    leds[i] = ColorFromPalette(palette, index);
+  }
+  FastLED.show();
+  delay(2000);
 }
 
 void updateEffectCycle() {
-  if (isEffectActive) {
-    startIndex++;
+  
+   if (isEffectActive) {
+    startIndex += 3;
     uint8_t colorIndex = startIndex;
     for (int i = 0; i < NUM_LEDS; i++) {
-      leds[i] = ColorFromPalette(currentPalette, colorIndex, 255, LINEARBLEND);
+      CRGB c = ColorFromPalette(currentPalette, colorIndex, 255, LINEARBLEND);
+      leds[i] = CRGB(c.b, c.g, c.r); // <- correction ici
       colorIndex += 3;
     }
     FastLED.show();
-    delay(20);
+    delay(100);
   }
+  
 }
 
 
@@ -179,7 +199,7 @@ void setup()
 
   delay(500); // power-up safety delay
     // Two strips of LEDs, one in HD mode, one in software gamma mode.
-  FastLED.addLeds<APA102, DATA_PIN, CLOCK_PIN, RGB>(leds, NUM_LEDS); 
+  FastLED.addLeds<SK9822, DATA_PIN, CLOCK_PIN, RGB>(leds, NUM_LEDS); 
   // indique la ref de la led, on donne son DI et CI 
   FastLED.setBrightness(90); //111+11111 = 255 // à voir 
   
