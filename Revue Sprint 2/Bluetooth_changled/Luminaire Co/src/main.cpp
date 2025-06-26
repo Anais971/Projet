@@ -6,7 +6,7 @@
 
 #define DATA_PIN 23 //pin DI
 #define CLOCK_PIN 18 // pin CI
-#define NUM_LEDS 60   // Nombre de LEDs dans ton ruban
+#define NUM_LEDS 11   // Nombre de LEDs dans ton ruban
 
 
 // Prépare le tableau de données pour 1 LED
@@ -201,7 +201,7 @@ void setup()
     // Two strips of LEDs, one in HD mode, one in software gamma mode.
   FastLED.addLeds<SK9822, DATA_PIN, CLOCK_PIN, RGB>(leds, NUM_LEDS); 
   // indique la ref de la led, on donne son DI et CI 
-  FastLED.setBrightness(90); //111+11111 = 255 // à voir 
+  FastLED.setBrightness(150); //111+11111 = 255 // à voir 
   
 
   
